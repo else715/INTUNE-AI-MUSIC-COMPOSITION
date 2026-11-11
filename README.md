@@ -1,73 +1,26 @@
-# Intune-AI Powered Piano Composition
+# Intune: AI Piano Melody Generation
 
-## Overview
+A Python prototype that trains an LSTM on encoded monophonic music sequences and samples new note and rest events into a MIDI file. The project uses `music21`, NumPy, and TensorFlow/Keras.
 
-The fusion of music and technology has led to remarkable advancements in the field of musical composition, particularly through the application of artificial intelligence. This project, **Intune-AI Powered Piano Composition**, aims to address the challenges faced in traditional piano composition methods by leveraging cutting-edge AI techniques.
+## Project files
 
-Traditional piano composition often relies heavily on human expertise, which can lead to limitations in creativity, subjective barriers, and accessibility issues. Existing tools may be restrictive and time-consuming, especially for aspiring musicians. Recognizing these challenges, this project provides an AI-driven solution to democratize piano composition, enabling effortless creation of original pieces for users of all skill levels.
+- `preprocess.py` — reads the configured Kern corpus and encodes note sequences.
+- `train.py` — trains and saves the sequence model.
+- `melodygenerator.py` — samples a sequence and writes MIDI output.
+- `display.py` — displays generated music data.
 
-## Features
+## Setup
 
-- **AI-Driven Composition**: Utilizes advanced AI techniques to generate original piano compositions.
-- **Accessibility**: Designed for both professional musicians and hobbyists.
-- **Innovative Algorithms**: Employs Recurrent Neural Networks (RNNs) and Long Short-Term Memory (LSTM) architectures.
+Use Python 3 and install `numpy`, `music21`, and `tensorflow` in a virtual environment. From the repository root, run:
 
-## Approach
+```bash
+python -m venv .venv
+# Activate the environment, then:
+python -m pip install numpy music21 tensorflow
+```
 
-This project introduces an innovative approach to music composition by employing artificial intelligence techniques, with a specific focus on Recurrent Neural Networks (RNNs) and Long Short-Term Memory (LSTM) architectures. These advanced neural network models are particularly well-suited for understanding and generating sequential data, making them ideal for composing music, which is inherently a sequence of notes, chords, and rhythms.
+The preprocessing script expects the Kern corpus at `deutschl/zuccal` (see the path configured in the script). Create the `dataset/` directory before preprocessing. Then run the preprocessing, training, and generation scripts from the repository root. The pipeline writes model and MIDI artifacts locally.
 
-## Implementation
+## Status
 
-### Neural Network Architecture
-
-- **Recurrent Neural Networks (RNNs)**: Used for their ability to handle sequential data.
-- **Long Short-Term Memory (LSTM)**: Enhances the RNNs by addressing the vanishing gradient problem, making them more effective for long-term dependencies in music sequences.
-
-### Dataset Preparation
-
-- **Data Collection**: Gathering a diverse set of piano compositions.
-- **Preprocessing**: Cleaning and structuring the data for training.
-
-### Training Pipeline
-
-- **Model Training**: Training the neural network models on the prepared datasets.
-- **Evaluation**: Assessing the performance and fine-tuning the models.
-
-## Getting Started
-
-### Prerequisites
-
-- Python 3.x
-- TensorFlow or PyTorch
-- Music21 library
-- MuseScore application
-
-### Installation
-
-1. Clone the repository:
-    ```bash
-    git clone https://github.com/Adithya2357/INTUNE-AI-MUSIC-COMPOSITION.git
-    ```
-2. Navigate to the project directory:
-    ```bash
-    cd INTUNE-AI-MUSIC-COMPOSITION
-    ```
-
-### Usage
-1. Run the preprocess file:
-   ```bash
-   python preprocess.py
-   ```
-2. Run the training script:
-    ```bash
-    python train.py
-    ```
-3. Generate a new composition:
-    ```bash
-    python melodygenerator.py
-    ```
-4.  Run display.py to open the generated .mid file in MuseScore for easy viewing and editing.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This is an experimental learning project. Model quality depends on the source corpus and training setup; generated output is not evaluated as a production composition system.
